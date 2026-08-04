@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+ <html lang="zh-CN">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>387班信息公告页</title>
+     <style>
+         * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+             font-family: "Microsoft YaHei", sans-serif;
+         }
+         body {
+             background-color: #f5f7fa;
+             padding: 30px 15px;
+         }
+         .container {
+             max-width: 800px;
+             margin: 0 auto;
+             background: #fff;
+             border-radius: 12px;
+             padding: 30px;
+             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+         }
+         /* 公告标题 */
+         .notice-title {
+             font-size: 22px;
+             font-weight: bold;
+             text-align: center;
+             color: #222;
+             margin-bottom: 20px;
+             padding-bottom: 12px;
+             border-bottom: 1px solid #eee;
+         }
+         /* 公告正文 */
+         .notice-text {
+             font-size: 15px;
+             line-height: 1.8;
+             color: #444;
+             margin-bottom: 30px;
+         }
+         /* 同意协议区域 */
+         .agree-box {
+             display: flex;
+             align-items: center;
+             gap: 10px;
+             margin-bottom: 25px;
+         }
+         /* 圆形勾选框样式 */
+         .radio-circle {
+             width: 20px;
+             height: 20px;
+             border: 2px solid #999;
+             border-radius: 50%;
+             position: relative;
+             cursor: pointer;
+             transition: all 0.2s;
+         }
+         .radio-circle.checked {
+             border-color: #007aff;
+         }
+         .radio-circle.checked::after {
+             content: "";
+             width: 10px;
+             height: 10px;
+             background: #007aff;
+             border-radius: 50%;
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             transform: translate(-50%, -50%);
+         }
+         .agree-tip {
+             font-size: 14px;
+             color: #555;
+         }
+         /* 确定按钮 */
+         #enterBtn {
+             width: 100%;
+             padding: 14px;
+             border-radius: 8px;
+             border: none;
+             font-size: 16px;
+             cursor: not-allowed;
+             background: #cccccc;
+             color: #fff;
+             transition: 0.3s;
+             margin-bottom: 40px;
+         }
+         #enterBtn.active {
+             background: #007aff;
+             cursor: pointer;
+         }
+         #enterBtn.active:hover {
+             background: #0060dd;
+         }/* 隐藏内容区（勾选进入后显示） */
+         .content-wrap {
+             display: none;
+         }
+         .content-title {
+             font-size: 20px;
+             font-weight: bold;
+             margin: 30px 0 15px;
+             color: #222;
+         }
+         /* 九宫格相册容器 3列布局 */
+         .img-grid {
+             display: grid;
+             grid-template-columns: repeat(3, 1fr);
+             gap: 14px;
+             margin: 20px 0;
+         }
+         /* 单张图片卡片 */
+         .img-card {
+             display: flex;
+             flex-direction: column;
+         }
+         /* 图片占位框 */
+         .img-box {
+             width: 100%;
+             min-height: 160px;
+             background: #f0f2f5;
+             border: 1px dashed #ccc;
+             border-radius: 8px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             color: #888;
+         }
+         /* 图片自适应填充 */
+         .img-box img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+             border-radius: 8px;
+         }
+         /* 每张图配套文字信息块 */
+         .info-block {
+             padding: 12px;
+             background: #f8f9fa;
+             border-radius: 8px;
+             line-height: 1.7;
+             color: #333;
+             margin-top: 8px;
+             font-size: 14px;
+         }
+     </style>
+ </head>
+ <body>
+     <div class="container">
+         <!-- 公告头部区域 -->
+         <h2 class="notice-title">公告通知</h2>
+         <div class="notice-text">
+             <!-- ==========【公告文字修改区】========== -->
+             里面有许**的照片。注：自愿查看不强迫，不能进行传播，不得进行违法行为，同意以上须知内容代表愿意承担一切法律后果，与该拍摄者和网站建造者无关，后果自负。
+             提示：进入本页面前请仔细阅读以上须知，确认知晓全部内容后勾选下方同意选项，方可查看信息。
+         </div>
+         <!-- 同意勾选框 -->
+         <div class="agree-box">
+             <div class="radio-circle" id="radioBtn"></div>
+             <span class="agree-tip">我已阅读并同意以上须知内容</span>
+         </div>
+         <!-- 确定按钮 -->
+         <button id="enterBtn">请勾选同意后进入</button>
+         <!-- ==========【勾选同意后才会显示的内容区】========== -->
+         <div class="content-wrap" id="mainContent"><h3 class="content-title">图集（共9张）</h3>
+             <!-- 九宫格 3行3列 9张图片全部预留 -->
+             <div class="img-grid">
+                 <!-- 第1张 -->
+                 <div class="img-card">
+                     <div class="img-box">
+                       <img src="pic1.jpg">
+                     </div>
+                     <div class="info-block">无介绍</div>
+                 </div>
+                 <!-- 第2张 -->
+                 <div class="img-card">
+                     <div class="img-box">
+                       <img src="pic2.jpg">
+                     </div>
+                     <div class="info-block">不知道在干什么，特别开心</div>
+                 </div>
+                 <!-- 第3张 -->
+                 <div class="img-card">
+                     <div class="img-box">
+                       <img src="pic3.jpg">
+                     </div>
+                     <div class="info-block">该不会是？好恶心啊</div>
+                 </div>
+                 <!-- 第4张 -->
+                 <div class="img-card">
+                     <div class="img-box">
+                       <img src="pic4.jpg">
+                     </div>
+                     <div class="info-block">666，都不演了</div>
+                 </div>
+                 <!-- 第5张 -->
+                 <div class="img-card">
+                     <div class="img-box">
+                       <img src="pic5.jpg">
+                     </div>
+                     <div class="info-block">在摸什么玩意儿？</div>
+                 </div>
+                 <!-- 第6张 -->
+                 <div class="img-card">
+                     <div class="img-box">
+                       <img src="pic6.jpg">
+                     </div>
+                     <div class="info-block">无介绍</div>
+                 </div>
+                 <!-- 第7张 -->
+                 <div class="img-card">
+                     <div class="img-box">
+                       <img src="pic7.jpg">
+                     </div>
+                     <div class="info-block">自己品吧</div>
+                 </div>
+                 <!-- 第8张 -->
+                 <div class="img-card">
+                     <div class="img-box">
+                       <img src="pic8.jpg">
+                     </div>
+                     <div class="info-block">玩弄电脑，不知道在写啥</div>
+                 </div>
+                 <!-- 第9张 -->
+                 <div class="img-card">
+                     <div class="img-box">
+                       <img src="pic9.jpg">
+                     </div>
+                     <div class="info-block">无介绍</div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <!-- 音频元素完全隐藏，无任何界面显示 -->
+     <audio id="bgAudio" loop style="display:none;visibility:hidden;width:0;height:0;">
+         <!-- 把引号内替换成你的mp3文件路径 -->
+         <source src="music.mp3" type="audio/mpeg">
+     
+     <script>
+         const radioBtn = document.getElementById('radioBtn');
+         const enterBtn = document.getElementById('enterBtn');
+         const mainContent = document.getElementById('mainContent');
+         const bgAudio = document.getElementById('bgAudio');
+         let isCheck = false;
+         let audioPlayed = false;
+         // 音量拉满
+         bgAudio.volume = 1;
+         // 页面任意点击、触摸触发播放（浏览器策略限制，必须交互才能播放音频）
+         document.addEventListener('click', startAudio);
+         document.addEventListener('touchstart', startAudio);
+         function startAudio(){
+             if(!audioPlayed){
+                 bgAudio.play();
+                 audioPlayed = true;
+                 // 只执行一次播放，后续循环由loop属性自动维持
+             }
+         }
+         // 原有勾选逻辑完全保留
+         radioBtn.addEventListener('click', ()=>{
+             isCheck = !isCheck;
+             radioBtn.classList.toggle('checked', isCheck);
+             if(isCheck){
+                 enterBtn.classList.add('active');
+                 enterBtn.innerText = '确认进入查看信息';
+             }else{
+                 enterBtn.classList.remove('active');
+                 enterBtn.innerText = '请勾选同意后进入';
+             }
+         })
+         enterBtn.addEventListener('click', ()=>{
+             if(isCheck){
+                 mainContent.style.display = 'block';
+                 mainContent.scrollIntoView({behavior:'smooth'})
+             }
+         })
+     </script>
+ </body>
+ </html>
