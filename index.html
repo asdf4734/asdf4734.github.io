@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国人会飞官网</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cRed: '#c22027',
+                        cGold: '#d4b866',
+                        inkBlack: '#0a0c10',
+                        cloudBg: '#141822'
+                    },
+                    fontFamily: {
+                        kai: ['KaiTi', 'STKaiti', 'serif'],
+                        song: ['SimSun', 'STSong', 'serif'],
+                        sans: ['Noto Sans SC', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-glow-gold {
+                text-shadow: 0 0 10px rgba(212,184,102,0.6), 0 0 24px rgba(212,184,102,0.25);
+            }
+            .text-glow-red {
+                text-shadow: 0 0 8px rgba(194,32,39,0.55);
+            }
+            .bg-sky-gradient {
+                background: linear-gradient(170deg, #0a0c10 0%, #10141f 65%, #141822 100%);
+            }
+            .border-glow {
+                box-shadow: 0 0 16px rgba(212,184,102,0.2), inset 0 0 18px rgba(212,184,102,0.05);
+            }
+            .float-slow {
+                animation: floatSlow 8s ease-in-out infinite;
+            }
+            .cloud-drift {
+                animation: driftCloud 22s linear infinite;
+            }
+            .light-pulse {
+                animation: pulseLight 3.5s ease-in-out infinite;
+            }
+            @keyframes floatSlow {
+                0%,100% { transform: translateY(0); }
+                50% { transform: translateY(-20px); }
+            }
+            @keyframes driftCloud {
+                0% { transform: translateX(-120px); opacity: 0; }
+                15% { opacity: 0.7; }
+                88% { opacity: 0.6; }
+                100% { transform: translateX(105vw); opacity: 0; }
+            }
+            @keyframes pulseLight {
+                0%,100% { box-shadow: 0 0 10px rgba(212,184,102,0.2); }
+                50% { box-shadow: 0 0 30px rgba(212,184,102,0.45); }
+            }
+            .cloud-particle {
+                position: absolute;
+                background: rgba(255,255,255,0.05);
+                border-radius: 999px;
+                filter: blur(12px);
+                pointer-events: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-inkBlack text-gray-100 overflow-x-hidden font-sans">
+    <!-- 全屏流动云层背景层 -->
+    <div id="cloudWrap" class="fixed inset-0 z-0 pointer-events-none"></div>
+
+    <!-- 导航栏 毛玻璃国风 -->
+    <nav class="fixed w-full top-0 z-50 bg-inkBlack/75 backdrop-blur-lg border-b border-cGold/20">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fa fa-diamond text-cGold text-2xl light-pulse"></i>
+                <span class="text-2xl font-kai text-cGold text-glow-gold">中国人会飞官网</span>
+            </div>
+            <div class="hidden md:flex gap-8 text-lg">
+                <a href="#banner" class="hover:text-cGold transition-all duration-300">开篇</a>
+                <a href="#ancient" class="hover:text-cGold transition-all duration-300">古之凌云</a>
+                <a href="#now" class="hover:text-cGold transition-all duration-300">今时展翅</a>
+                <a href="#spirit" class="hover:text-cGold transition-all duration-300">本心飞翔</a>
+            </div>
+            <a href="#spirit" class="px-5 py-2 rounded-full border border-cRed text-cRed hover:bg-cRed hover:text-white transition-all">
+                乘风而上
+            </a>
+        </div>
+    </nav>
+
+    <!-- 首屏主视觉 -->
+    <section id="banner" class="relative min-h-screen flex items-center justify-center bg-sky-gradient pt-24 overflow-hidden">
+        <!-- 划过天际流云光带 -->
+        <div class="absolute w-72 h-[1px] bg-gradient-to-r transparent via-cGold transparent cloud-drift top-[28%]"></div>
+        <div class="absolute w-56 h-[1px] bg-gradient-to-r transparent via-cRed transparent cloud-drift top-[52%] delay-[2500ms]"></div>
+        <div class="absolute w-96 h-[1px] bg-gradient-to-r transparent via-white/30 transparent cloud-drift top-[74%] delay-[5000ms]"></div>
+
+        <div class="container mx-auto px-6 text-center z-10">
+            <h1 class="text-[clamp(3rem,9vw,6rem)] font-kai font-bold leading-tight mb-8">
+                <span class="text-cRed text-glow-red">中国人会飞</span>
+            </h1>
+            <p class="text-[clamp(1.1rem,2vw,1.4rem)] text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+                此飞，不在星河苍穹，而在心志高远。<br>
+                古人乘鲲鹏扶摇，今人凭理想凌云；平凡中国人，人人皆可展翅高飞。
+            </p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#ancient" class="px-9 py-4 bg-cRed rounded-full text-lg hover:bg-red-800 transition-all shadow-lg shadow-cRed/30">
+                    溯源凌云志
+                </a>
+                <a href="#now" class="px-9 py-4 rounded-full border border-cGold text-cGold text-lg hover:bg-cGold/10 transition-all">
+                    看今朝展翅
+                </a>
+            </div>
+            <div class="absolute bottom-14 left-1/2 -translate-x-1/2 float-slow">
+                <i class="fa fa-angle-down text-cGold text-3xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 古之凌云：传统文化里的飞翔浪漫 -->
+    <section id="ancient" class="py-28 relative bg-cloudBg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(2rem,5vw,3.6rem)] font-song text-cGold text-glow-gold mb-4">自古华夏，心向云天</h2>
+                <div class="w-28 h-[2px] bg-cGold mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-9">
+                <!-- 鲲鹏之志 -->
+                <div class="border border-cGold/20 rounded-xl p-8 border-glow bg-inkBlack/40 hover:-translate-y-3 transition-all duration-500">
+                    <i class="fa fa-paper-plane text-cGold text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-kai mb-4 text-cGold">鲲鹏展翅</h3>
+                    <p class="text-gray-300 leading-relaxed">庄子言，水击三千里，抟扶摇而上者九万里。飞翔是华夏最早的精神向往，不拘泥方寸天地，心向广阔山河。</p>
+                </div>
+                <!-- 侠客乘风 -->
+                <div class="border border-cGold/20 rounded-xl p-8 border-glow bg-inkBlack/40 hover:-translate-y-3 transition-all duration-500">
+                    <i class="fa fa-user text-cGold text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-kai mb-4 text-cGold">侠客乘风</h3>
+                    <p class="text-gray-300 leading-relaxed">武侠风骨里，侠客踏风远行，纵马山河。挣脱世俗束缚，随心奔赴远方，是刻在国人骨子里的自由之飞。</p>
+                </div>
+                <!-- 登高望远 -->
+                <div class="border border-cGold/20 rounded-xl p-8 border-glow bg-inkBlack/40 hover:-translate-y-3 transition-all duration-500">
+                    <i class="fa fa-mountain text-cGold text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-kai mb-4 text-cGold">登高凌云</h3>
+                    <p class="text-gray-300 leading-relaxed">历代文人登高作赋，欲上青天揽明月。所谓飞翔，是眼界超脱庸常，胸怀装得下万里风云。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 今时展翅：普通人的飞翔（去掉航天，聚焦凡人追梦） -->
+    <section id="now" class="py-28 bg-sky-gradient">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-14">
+                <div class="md:w-1/2 order-2 md:order-1">
+                    <h2 class="text-[clamp(2rem,5vw,3.6rem)] font-song text-cGold text-glow-gold mb-7">
+                        每个普通人，都拥有飞翔的力量
+                    </h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-7">
+                        不必借飞行器升空，心怀理想便是展翅。<br>
+                        学子寒窗苦读奔赴前程、匠人深耕手艺突破自我、游子背上行囊奔赴理想、创业者逆风翻盘冲破困境。<br>
+                        挣脱平庸、突破自我、奔赴热爱，这就是现代人的飞翔。
+                    </p>
+                    <ul class="space-y-5 text-lg">
+                        <li class="flex items-center gap-3">
+                            <i class="fa fa-check text-cRed"></i>
+                            <span>向上生长，突破自我局限，即是飞翔</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa fa-check text-cRed"></i>
+                            <span>心怀热爱，不惧前路风雨，乘风向前</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa fa-check text-cRed"></i>
+                            <span>扎根故土，带着家国底气，飞向更远山海</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 order-1 md:order-2 relative float-slow">
+                    <div class="w-full h-72 md:h-[420px] rounded-2xl border border-cGold/30 border-glow bg-[url('https://picsum.photos/id/1036/1100/850')] bg-cover bg-center"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 精神内核板块 -->
+    <section id="spirit" class="py-28 bg-cloudBg">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-[clamp(2rem,5vw,3.6rem)] font-kai text-cGold text-glow-gold mb-10">何为会飞的中国人</h2>
+            <blockquote class="max-w-4xl mx-auto text-[clamp(1.2rem,2.5vw,1.6rem)] text-gray-200 leading-loose border-l-4 border-cRed pl-7 py-5 text-left mb-14">
+                飞翔从不是脱离大地，而是站在故土之上仰望高处。<br>
+                中国人的飞，是踏实耕耘后的向上求索；是历经磨砺后的不肯低头；<br>
+                是平凡生命不甘平庸，永远保有奔赴远方、超越自我的勇气。
+            </blockquote>
+            <a href="#banner" class="inline-block px-12 py-5 bg-cGold text-inkBlack font-bold rounded-full text-xl hover:bg-yellow-500 transition-all light-pulse">
+                 做会飞的中国人
+             </a>
+         </div>
+     </section>
+     <!-- 页脚 -->
+     <footer class="py-12 border-t border-cGold/20 bg-inkBlack text-center text-gray-400">
+         <p class="mb-3 text-lg">中国人会飞 · 心有凌云，自可乘风 © 2026</p>
+         <p>扎根华夏大地，奔赴万里长风</p>
+     </footer>
+     <!-- JS功能：动态云层粒子 + 平滑滚动 -->
+     <script>
+         const cloudBox = document.getElementById('cloudWrap');
+         // 生成流动云粒子
+         function buildCloud() {
+             const div = document.createElement('div');
+             div.classList.add('cloud-particle');
+             const size = Math.random() * 140 + 30;
+             div.style.width = size + 'px';
+             div.style.height = size + 'px';
+             div.style.left = Math.random() * 100 + '%';
+             div.style.top = Math.random() * 100 + '%';
+             cloudBox.appendChild(div);
+             setTimeout(() => div.remove(), 14000);
+         }
+         setInterval(buildCloud, 900);
+         // 锚点平滑滚动
+         document.querySelectorAll('a[href^="#"]').forEach(link => {
+             link.addEventListener('click', e => {
+                 e.preventDefault();
+                 document.querySelector(link.getAttribute('href')).scrollIntoView({
+                     behavior: 'smooth'
+                 })
+             })
+         })
+     </script>
+ </body>
+ </html>
